@@ -36,6 +36,10 @@ class UtilsTest extends WP_UnitTestCase {
 		$plugin = Utils::get_plugin_from_slug( 'akismet' );
 		$this->assertEquals( $plugin['file'], 'akismet/akismet.php' );
 
+		if ( ! method_exists( 'WP_UnitTestCase', 'expectException' ) ) {
+			$this->markTestSkipped( 'Skipped because older version PHPUnit is used,' );
+		}
+
 		$this->expectException( 'Exception' );
 		Utils::get_plugin_from_slug( 'non-existing' );
 	}
@@ -43,6 +47,10 @@ class UtilsTest extends WP_UnitTestCase {
 	public function test_get_theme_from_slug() {
 		$theme = Utils::get_theme_from_slug( 'twentyseventeen' );
 		$this->assertEquals( $theme['data']->get( 'Name' ), 'Twenty Seventeen' );
+
+		if ( ! method_exists( 'WP_UnitTestCase', 'expectException' ) ) {
+			$this->markTestSkipped( 'Skipped because older version PHPUnit is used.' );
+		}
 
 		$this->expectException( 'Exception' );
 		Utils::get_theme_from_slug( 'non-existing' );

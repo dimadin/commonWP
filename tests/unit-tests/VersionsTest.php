@@ -23,6 +23,10 @@ class VersionsTest extends WP_UnitTestCase {
 		$this->assertEquals( Versions::get_twemoji_version_from_svg_url( 'https://s.w.org/images/core/emoji/2.4.1/svg/' ), '2.4.1' );
 		$this->assertEquals( Versions::get_twemoji_version_from_svg_url( 'http://some.tld/emoji/1/svg/' ), '1' );
 
+		if ( ! method_exists( 'WP_UnitTestCase', 'expectException' ) ) {
+			$this->markTestSkipped( 'Skipped because older version PHPUnit is used.' );
+		}
+
 		$this->expectException( 'Exception' );
 		Versions::get_twemoji_version_from_svg_url( 'https://s.w.org/images/core/emoji/svg/' );
 	}
@@ -47,6 +51,10 @@ class VersionsTest extends WP_UnitTestCase {
 		$this->assertEquals( Versions::get_previous_wp_version_in_branch( '4.9.2' ), '4.9.1' );
 		$this->assertEquals( Versions::get_previous_wp_version_in_branch( '4.9.3-src' ), '4.9.2' );
 		$this->assertEquals( Versions::get_previous_wp_version_in_branch( '4.9.4-alpha-1' ), '4.9.3' );
+
+		if ( ! method_exists( 'WP_UnitTestCase', 'expectException' ) ) {
+			$this->markTestSkipped( 'Skipped because older version PHPUnit is used.' );
+		}
 
 		$this->expectException( 'Exception' );
 		Versions::get_previous_wp_version_in_branch( '4.9' );

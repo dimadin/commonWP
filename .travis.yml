@@ -31,6 +31,10 @@ env:
 
 matrix:
   fast_finish: true
+  exclude:
+    # don't test 4.7 on PHP 7.2:
+    - php: 7.2
+      env: WP_VERSION=4.7 WP_MULTISITE=0
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"

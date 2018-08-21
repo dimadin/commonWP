@@ -26,6 +26,10 @@ class NPMTest extends WP_UnitTestCase {
 		];
 		$this->assertEquals( NPM::get_data( 'jquery-core', 'script' ), $expect );
 
+		if ( ! method_exists( 'WP_UnitTestCase', 'expectException' ) ) {
+			$this->markTestSkipped( 'Skipped because older version PHPUnit is used.' );
+		}
+
 		$this->expectException( 'Exception' );
 		NPM::get_data( 'non-existing', 'script' );
 	}

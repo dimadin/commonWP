@@ -23,6 +23,10 @@ class RewriteTest extends WP_UnitTestCase {
 		$this->assertEquals( '/wp-includes/js/admin-bar.js', Rewrite::get_relative_path( site_url( '/wp-includes/js/admin-bar.js' ) ) );
 		$this->assertEquals( '/some/custom/path.file', Rewrite::get_relative_path( site_url( '/some/custom/path.file' ) ) );
 
+		if ( ! method_exists( 'WP_UnitTestCase', 'expectException' ) ) {
+			$this->markTestSkipped( 'Skipped because older version PHPUnit is used.' );
+		}
+
 		$this->expectException( 'Exception' );
 		Rewrite::get_relative_path( 'http://custom.tld/path/to/file' );
 	}
