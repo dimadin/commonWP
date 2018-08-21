@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<ruleset name="commonWP ruleset">
+	<description>Sniffs for commonWP.</description>
+
+	<!-- What to scan -->
+	<file>.</file>
+	<exclude-pattern>/vendor/</exclude-pattern>
+
+	<!-- How to scan -->
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+
+	<!-- Rules: Check PHP version compatibility -->
+	<config name="testVersion" value="5.4-"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Rules: WordPress Coding Standards -->
+	<config name="minimum_supported_wp_version" value="4.7"/>
+	<rule ref="WordPress">
+		<exclude name="WordPress.VIP"/>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array" value="commonwp"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="commonwp"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
+		<properties>
+			<property name="blank_line_check" value="true"/>
+		</properties>
+	</rule>
+	<!-- The WordPress Coding Standards state that all class files should start with 'class-'. -->
+	<!-- commonWP follows the PSR-0 standard for naming class files, because it uses autoloading via Composer. -->
+	<rule ref="WordPress.Files.FileName">
+		<properties>
+			<property name="strict_class_file_names" value="false" />
+		</properties>
+	</rule>
+	<rule ref="WordPress-Extra">
+		<!-- Do not check for proper WordPress file names. -->
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+	</rule>
+
+	<!-- Enforce PSR1 compatible namespaces. -->
+	<rule ref="PSR1.Classes.ClassDeclaration"/>
+
+	<!-- Some rules shouldn't be used for tests -->
+	<rule ref="Squiz.Commenting.FunctionComment.Missing">
+		<exclude-pattern>/tests/</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.VariableComment.Missing">
+		<exclude-pattern>/tests/</exclude-pattern>
+	</rule>
+</ruleset>

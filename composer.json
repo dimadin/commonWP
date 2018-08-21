@@ -1,0 +1,34 @@
+{
+	"name": "dimadin/commonwp",
+	"description": "Load open source static assets over free, public CDN",
+	"keywords": ["CDN", "jsDelivr"],
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Milan Dinić",
+			"email": "milan@srpski.biz",
+			"homepage": "https://milandinic.com/"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/dimadin/commonwp/issues",
+		"source": "https://github.com/dimadin/commonwp"
+	},
+	"require": {
+		"php": ">=5.4",
+		"composer/installers": "~1.0",
+		"dimadin/wp-temporary": "dev-master",
+		"dimadin/backdrop": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"dimadin\\WP\\Plugin\\commonWP\\": "inc/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"dimadin\\WP\\Plugin\\commonWP\\Tests\\": "tests/unit-tests/"
+		}
+	}
+}
