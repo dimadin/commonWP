@@ -518,24 +518,64 @@ class Process {
 			}
 		}
 
-		// Check if theme is one of defaults.
-		if ( ! array_key_exists( $theme_slug, Utils::get_default_themes( $theme['data'] ) ) ) {
-			// Check if theme is hosted on GitHub.
-			$repository = $theme['data']->get( 'GitHub Theme URI' );
+		// Remove theme slug from the start.
+		$file = Utils::str_replace_once( '/' . $theme_slug, '', $file );
 
-			if ( $repository ) {
-				// Remove theme slug from the start.
-				$file = Utils::str_replace_once( '/' . $theme_slug, '', $file );
+		// Check if theme is hosted on GitHub.
+		$repository = $theme['data']->get( 'GitHub Theme URI' );
 
+		if ( $repository ) {
+			try {
 				return $this->github( Utils::sanitize_github_repository_name( $repository ), $version, $file );
-			} else {
-				throw new Exception( 'Theme is not one of default.' );
+			} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement
+				// Proceed with standard processing.
 			}
 		}
 
-		// If latest version of default theme isn't requested, proceed with standard core path.
-		if ( ! isset( $process_with_update ) || false !== $process_with_update ) {
-			$this->core();
+		// Check if theme is specifying that is not hosted on WordPress.org.
+		$private = $theme['data']->get( 'Private' );
+
+		if ( 'true' === strtolower( $private ) ) {
+			throw new Exception( 'Theme file is not processed as theme is not hosted on WordPress.org.' );
+		}
+
+		try {
+			$jsdelivr_path = "/wp/themes/{$theme_slug}/{$version}{$file}";
+			$jsdelivr_url  = 'https://cdn.jsdelivr.net' . $jsdelivr_path;
+
+			$remote_content = Utils::get_remote_content( $jsdelivr_url );
+			$origin_content = $this->get_origin_content();
+
+			if ( $remote_content !== $origin_content ) {
+				throw new Exception( 'Remote theme file is not the same as local file.' );
+			}
+
+			$this->status      = 'active';
+			$this->remote_path = $jsdelivr_path;
+
+			/**
+			 * Filter TTL of active path that rewrites to theme path.
+			 *
+			 * Note that path might be cached as active for up to 12 hours after
+			 * expiration. Garbage collector is scheduled to run twice daily,
+			 * though it can be run before.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @param int     $ttl  TTL of active path in seconds. Default 259200 (three days).
+			 * @param Process $this Current instance of class.
+			 */
+			$ttl = apply_filters( 'commonwp_theme_path_ttl', 3 * DAY_IN_SECONDS, $this );
+
+			$this->ttl = time() + $ttl;
+			$this->add_subresource_integrity( $remote_content );
+		} catch ( Exception $e ) {
+			// If latest version of default theme isn't requested in case of update, proceed with standard core path.
+			if ( ( ! isset( $process_with_update ) || false !== $process_with_update ) && array_key_exists( $theme_slug, Utils::get_default_themes( $theme['data'] ) ) ) {
+				return $this->core();
+			} else {
+				throw new Exception( $e->getMessage() );
+			}
 		}
 	}
 

@@ -10,8 +10,8 @@ commonWP is a plugin that enables usage of free CDN for open source JavaScript a
 - What files can be rewritten?
   - All files from WordPress core, unless you use development version of WordPress.
   - All files from plugins hosted by [WordPress.org Plugins Repository](https://wordpress.org/plugins/), unless author of specific plugin doesn't use [SVN tags for releasing](https://developer.wordpress.org/plugins/wordpress-org/how-to-use-subversion/#tagging-new-versions).
+  - All files from themes hosted by [WordPress.org Themes Repository](https://wordpress.org/themes/).
   - All files from plugins and themes hosted on [GitHub](https://github.com/) that support [GitHub Updater](https://github.com/afragen/github-updater).
-  - All files from [default WordPress themes](https://codex.wordpress.org/WordPress_Default_Themes).
   - All files marked as available on [npm](https://www.npmjs.com/) in any type of theme, plugin, or MU plugin.
 - Why jsDelivr?
   - [jsDelivr](https://www.jsdelivr.com/) is a public, open source CDN, free to use for everyone, with no bandwidth limits, focused on performance, reliability, and security, built for production. It has multiple levels of failover, hundreds of points of presence around the world, valid ICP license issued by the Chinese government with locations directly in Mainland China.
@@ -145,6 +145,7 @@ When commonWP sees new file, it processes that file in the background task to se
  - `commonwp_npm_path_ttl` - For files available on `/npm` path. Default one week.
  - `commonwp_emoji_npm_path_ttl` - For emoji directory available on `/npm` path. Default one week.
  - `commonwp_plugin_path_ttl` - For files available on `/wp/plugins` path. Default one day.
+ - `commonwp_theme_path_ttl` - For files available on `/wp/themes` path. Default three days.
  - `commonwp_github_path_ttl` - For files available on `/gh` path. Default two days.
  - `commonwp_inactive_path_ttl` - For files that aren't on jsDelivr. Default one day.
  - `commonwp_inactive_path_ttl_for_recently_upgraded_core` - For WordPress core files that aren't on jsDelivr when WordPress core was recently upgraded. Default 15 minutes.
