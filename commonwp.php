@@ -4,7 +4,7 @@
  * Description: Load open source static assets over free, public CDN.
  * Author:      Milan Dinić
  * Author URI:  https://milandinic.com/
- * Version:     1.0.0-beta-1
+ * Version:     1.0.0-beta-2
  * Text Domain: commonwp
  * Domain Path: /languages/
  *
@@ -22,7 +22,7 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
  * @since 1.0.0
  * @var string
  */
-define( 'COMMONWP_VERSION', '1.0.0-beta-1' );
+define( 'COMMONWP_VERSION', '1.0.0-beta-2' );
 
 /*
  * Initialize a plugin.
