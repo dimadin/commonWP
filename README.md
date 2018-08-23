@@ -144,7 +144,7 @@ When commonWP sees new file, it processes that file in the background task to se
 
  - `commonwp_npm_path_ttl` - For files available on `/npm` path. Default one week.
  - `commonwp_emoji_npm_path_ttl` - For emoji directory available on `/npm` path. Default one week.
- - `commonwp_plugin_path_ttl` - For files available on `/wp` path. Default one day.
+ - `commonwp_plugin_path_ttl` - For files available on `/wp/plugins` path. Default one day.
  - `commonwp_github_path_ttl` - For files available on `/gh` path. Default two days.
  - `commonwp_inactive_path_ttl` - For files that aren't on jsDelivr. Default one day.
  - `commonwp_inactive_path_ttl_for_recently_upgraded_core` - For WordPress core files that aren't on jsDelivr when WordPress core was recently upgraded. Default 15 minutes.

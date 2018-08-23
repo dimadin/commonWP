@@ -431,7 +431,7 @@ class Process {
 			throw new Exception( 'Plugin file is not processed as plugin is not hosted on WordPress.org.' );
 		}
 
-		$jsdelivr_path = "/wp/{$plugin_slug}/tags/{$version}{$file}";
+		$jsdelivr_path = "/wp/plugins/{$plugin_slug}/tags/{$version}{$file}";
 		$jsdelivr_url  = 'https://cdn.jsdelivr.net' . $jsdelivr_path;
 
 		$remote_content = Utils::get_remote_content( $jsdelivr_url );
