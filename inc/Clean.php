@@ -259,6 +259,6 @@ class Clean {
 			return;
 		}
 
-		static::theme_paths( array_unique( $old_theme->get_stylesheet(), $old_theme->get_template() ) );
+		static::theme_paths( array_unique( [ $old_theme->get_stylesheet(), $old_theme->get_template() ] ) );
 	}
 }
