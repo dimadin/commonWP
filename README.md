@@ -30,6 +30,10 @@ commonWP is a plugin that enables usage of free CDN for open source JavaScript a
     - Further your site's visitors are from server your site is hosted on, the more speed they would get.
     - Slower your server is, the more speed they would get.
     - If your visitors already visited WordPress site(s) with commonWP activated, there is more chance that some of the files you use on your site are already cached by them so the more speed they would get.
+- Are there any benefits other than speed?
+  - There are indirect benefits of using public CDNs. For example, almost all WordPress sites on front end use `jquery.js`, `jquery-migrate.min.js`, `wp-embed.min.js`, `wp-emoji-release.min.js` files. Those files are the same on each site but they are distributed separately for each site. It means that you download the same files over and over again even though you already have them in your browser cache. Now imagine that instead of distributing separately, those files were distributed from the same location for each site. Now you would download files just once and whenever you go to another site you would use them from your browser cache. This means that those sites would load faster (you don't download same files again), use less data (less bandwidth to pay by site and less used data from your data cap), use less space in the browser cache (which could be used for caching other stuff), make less load on their servers (and all of this makes things more energy efficient).
+  This is the idea behind commonWP. Since most of the files used by WordPress sites are open source (which means available on public CDNs), why not distributing them from the central location and having all benefits listed above?
+  (This how name came: _*Common* *W*ord*P*ress_.)
 - What if I already use CDN?
   - commonWP will try to rewrite files that exist on jsDelivr. For other files, you will fallback to CDN you use. This only works if plugin you use for CDN is not running before commonWP.
 - What if I use Autoptimize or other plugin for automatic concatenation or minification?
