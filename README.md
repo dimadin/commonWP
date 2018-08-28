@@ -5,6 +5,14 @@
 
 commonWP is a plugin that enables usage of free CDN for open source JavaScript and CSS files. It aims to be both lightweight and very secure.
 
+## Usage
+
+If you clone this repository, run `composer install`. Otherwise, require [`dimadin/commonwp` package](https://packagist.org/packages/dimadin/commonwp) in your project.
+
+After activation, there are no any settings. It will fill up its cache in the background, and that may take some time depending on number of resources site uses.
+
+You may change some default commonWP settings by using [WordPress hooks](https://developer.wordpress.org/plugins/hooks/) which are listed below.
+
 ## FAQ
 
 - What files can be rewritten?
