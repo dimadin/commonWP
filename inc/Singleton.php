@@ -1,6 +1,6 @@
 <?php
 /**
- * \dimadin\WP\Plugin\commonWP\Singleton class.
+ * \dimadin\WP\Plugin\commonWP\Singleton trait.
  *
  * @package commonWP
  * @since 1.0.0
