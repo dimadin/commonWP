@@ -1,6 +1,6 @@
 {
 	"name": "dimadin/commonwp",
-	"description": "Load open source static assets over free, public CDN",
+	"description": "Offload open source static assets to the free, public CDN",
 	"keywords": ["CDN", "jsDelivr"],
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",

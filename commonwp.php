@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: commonWP
- * Description: Load open source static assets over free, public CDN.
+ * Description: Offload open source static assets to the free, public CDN.
  * Author:      Milan Dinić
  * Author URI:  https://milandinic.com/
  * Version:     1.0.0-beta-2
