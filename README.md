@@ -2,6 +2,7 @@
 # commonWP
 
 [![Build Status](https://www.travis-ci.org/dimadin/commonWP.svg?branch=master)](https://www.travis-ci.org/dimadin/commonWP)
+[![Latest Stable Version](https://poser.pugx.org/dimadin/commonwp/version)](https://wordpress.org/plugins/commonwp/)
 
 commonWP is a plugin that enables usage of free CDN for open source JavaScript and CSS files. It aims to be both lightweight and very secure.
 
