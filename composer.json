@@ -19,8 +19,8 @@
 	"require": {
 		"php": ">=5.4",
 		"composer/installers": "~1.0",
-		"dimadin/wp-temporary": "dev-master",
-		"dimadin/backdrop": "dev-master"
+		"dimadin/wp-temporary": "^1.0",
+		"dimadin/backdrop": "^1.0"
 	},
 	"autoload": {
 		"psr-4": {
