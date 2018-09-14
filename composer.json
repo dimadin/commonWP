@@ -1,6 +1,7 @@
 {
 	"name": "dimadin/commonwp",
 	"description": "Offload open source static assets to the free, public CDN",
+	"homepage": "https://milandinic.com/wordpress/plugins/commonwp/",
 	"keywords": ["CDN", "jsDelivr"],
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",

@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name: commonWP
+ * Plugin URI:  https://milandinic.com/wordpress/plugins/commonwp/
  * Description: Offload open source static assets to the free, public CDN.
  * Author:      Milan Dinić
  * Author URI:  https://milandinic.com/
