@@ -47,7 +47,7 @@ You may change some default commonWP settings by using [WordPress hooks](https:/
 - What if I use Autoptimize or other plugin for automatic concatenation or minification?
   - If that plugin is not running before commonWP, you will automatically concatenate or minify only files not rewritten by commonWP.
 - Are there any options that I can configure?
-  - Not in the UI, though you can configure several things via WordPress filters if your setup needs it. This is only for developers that know what they are doing. See below for some examples.
+  - Not in the UI, though you can configure several things via WordPress filters if your setup needs it. This is only for developers that know what they are doing. See below for some examples and checkout full code reference at [http://api.milandinic.com/commonwp/](http://api.milandinic.com/commonwp/).
 - What about privacy, GDPR?
   - By using commonWP, some files on your site's pages would be loaded from [jsDelivr](https://www.jsdelivr.com/). Privacy policy for using jsDelivr CDN is on https://www.jsdelivr.com/privacy-policy-jsdelivr-net. That page gives detailed information about their data processing.
 
