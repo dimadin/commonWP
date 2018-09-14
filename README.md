@@ -8,7 +8,11 @@ commonWP is a plugin that enables usage of free CDN for open source JavaScript a
 
 ## Usage
 
-If you clone this repository, run `composer install`. Otherwise, require [`dimadin/commonwp` package](https://packagist.org/packages/dimadin/commonwp) in your project.
+There are three ways to install commonWP:
+
+ * You can get stable version from [WordPress.org Plugins Repository](https://wordpress.org/plugins/commonwp/).
+ * You can require [`dimadin/commonwp` package](https://packagist.org/packages/dimadin/commonwp) in your project.
+ * You can clone this repository, then run `composer install`.
 
 After activation, there are no any settings. It will fill up its cache in the background, and that may take some time depending on number of resources site uses.
 
