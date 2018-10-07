@@ -144,6 +144,9 @@ class Process {
 		// If status is not 'active', path was not successfully processed.
 		if ( empty( $this->status ) || 'active' !== $this->status ) {
 			throw new Exception( 'Path was not successfully processed.' );
+		} else {
+			// Try with dynamically minified version.
+			$this->maybe_use_dynamically_minified();
 		}
 	}
 
@@ -705,5 +708,83 @@ class Process {
 		$this->origin_content = Utils::get_remote_content( $this->src );
 
 		return $this->origin_content;
+	}
+
+	/**
+	 * Try to use dynamically minified remote file.
+	 *
+	 * To be able to use dynamically minified remote file, site must not
+	 * define `SCRIPT_DEBUG` constant, must pass truthy value to filter
+	 * `commonwp_use_dynamically_minified`, must not already end with
+	 * `.min.(js|css)`, and dynamically minified remote file must have smaller
+	 * size in bytes than original file.
+	 *
+	 * @since 1.1.0
+	 */
+	public function maybe_use_dynamically_minified() {
+		// Check if force to use development version.
+		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+			return;
+		}
+
+		/**
+		 * Filter whether to use dynamically minified remote file.
+		 *
+		 * Passing a truthy value will force trying to use dynamically
+		 * minified remote file.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param bool    $use_dynamically_minified Value to return.
+		 * @param Process $this                     Current instance of class.
+		 */
+		$use_dynamically_minified = apply_filters( 'commonwp_use_dynamically_minified', false, $this );
+
+		if ( false === $use_dynamically_minified ) {
+			return;
+		}
+
+		// Set variables that depend on type of dependency.
+		$extension     = ( 'style' === $this->type ) ? '.css' : '.js';
+		$min_extension = ".min{$extension}";
+		$length        = strlen( $extension );
+		$min_length    = strlen( $min_extension );
+
+		// Check if remote path is actually ending with extension.
+		if ( substr( $this->remote_path, - $length ) !== $extension ) {
+			return;
+		}
+
+		// Check if remote path is already ending with extension for minified file.
+		if ( substr( $this->remote_path, - $min_length ) === $min_extension ) {
+			return;
+		}
+
+		$minified_jsdelivr_path = substr_replace( $this->remote_path, $min_extension, - $length );
+		$minified_jsdelivr_url  = 'https://cdn.jsdelivr.net' . $minified_jsdelivr_path;
+
+		try {
+			// Get content of remote minified file.
+			$remote_content = Utils::get_remote_content( $minified_jsdelivr_url );
+			$origin_content = $this->get_origin_content();
+
+			// Check if remote file is actually smaller in size than original file.
+			if ( strlen( $remote_content ) > strlen( $origin_content ) ) {
+				return;
+			}
+
+			// Check if jsDelivr actually minified original file.
+			if ( false !== strpos( $remote_content, 'Skipped minification' ) ) {
+				return;
+			}
+
+			// Remote file is probably successfully minified, use it instead.
+			$this->remote_path = $minified_jsdelivr_path;
+
+			// Do not use SRI with dynamically minified files.
+			$this->subresource_integrity = '';
+		} catch ( Exception $e ) {
+			return;
+		}
 	}
 }
