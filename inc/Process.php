@@ -18,7 +18,7 @@ use Exception;
 use _WP_Dependency;
 
 /**
- * Class that processes current to get remote one.
+ * Class that processes current path to get remote one.
  *
  * @since 1.0.0
  */
