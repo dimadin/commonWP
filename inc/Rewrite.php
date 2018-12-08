@@ -69,6 +69,11 @@ class Rewrite {
 	 * @return string $src Rewritten URL of dependency.
 	 */
 	public static function dependency( $src, $handle, $type ) {
+		// Check that source is set.
+		if ( ! $src ) {
+			return $src;
+		}
+
 		// Check if source is on current site.
 		try {
 			$relative_path = static::get_relative_path( $src );
