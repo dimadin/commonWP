@@ -17,6 +17,7 @@ cache:
     - $HOME/.composer/cache
 
 php:
+  - 7.3
   - 7.2
   - 7.1
   - 7.0
@@ -32,6 +33,9 @@ env:
 matrix:
   fast_finish: true
   exclude:
+    # don't test 4.7 on PHP 7.3:
+    - php: 7.3
+      env: WP_VERSION=4.7 WP_MULTISITE=0
     # don't test 4.7 on PHP 7.2:
     - php: 7.2
       env: WP_VERSION=4.7 WP_MULTISITE=0
