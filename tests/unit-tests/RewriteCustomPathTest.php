@@ -34,6 +34,10 @@ class RewriteCustomPathTest extends WP_UnitTestCase {
 	}
 
 	public function test_get_relative_path() {
+		if ( version_compare( get_bloginfo( 'version' ), '5.0', '>' ) ) {
+			$this->markTestSkipped( 'Skipped because WP 5.0+ is used.' );
+		}
+
 		$this->assertEquals( '#SITE#/wp-includes/js/admin-bar.js', Rewrite::get_relative_path( site_url( '/wp-includes/js/admin-bar.js' ) ) );
 		$this->assertEquals( '#CONTENT#/plugins/akismet/_inc/form.js', Rewrite::get_relative_path( content_url( '/plugins/akismet/_inc/form.js' ) ) );
 	}

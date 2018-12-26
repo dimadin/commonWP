@@ -34,10 +34,18 @@ class UtilsCustomPathTest extends WP_UnitTestCase {
 	}
 
 	public function test_get_root_url() {
+		if ( version_compare( get_bloginfo( 'version' ), '5.0', '>' ) ) {
+			$this->markTestSkipped( 'Skipped because WP 5.0+ is used.' );
+		}
+
 		$this->assertNotEquals( Utils::get_root_url( 'site' ), Utils::get_root_url( 'content' ) );
 	}
 
 	public function test_get_relative_path_prefix() {
+		if ( version_compare( get_bloginfo( 'version' ), '5.0', '>' ) ) {
+			$this->markTestSkipped( 'Skipped because WP 5.0+ is used.' );
+		}
+
 		$this->assertEquals( Utils::get_relative_path_prefix( 'site' ), '#SITE#' );
 		$this->assertEquals( Utils::get_relative_path_prefix( 'content' ), '#CONTENT#' );
 	}
