@@ -193,12 +193,13 @@ class Versions {
 	}
 
 	/**
-	 * Get tag for current WordPress version on GitHub.
+	 * Get tag for current WordPress version on GitHub development repository.
 	 *
 	 * WordPress version does not follow semver. Major versions are
 	 * in form X.Y while minor versions are in form X.Y.Z. However,
-	 * tags on GitHub use form X.Y.0 for major versions. This method
-	 * tries to generate correct version of tag on GitHub.
+	 * tags on GitHub development repository use form X.Y.0 for major
+	 * versions. This method tries to generate correct version of tag
+	 * on GitHub development repository.
 	 *
 	 * @since 1.0.0
 	 *

@@ -66,6 +66,6 @@ class ProcessTest extends WP_UnitTestCase {
 		$paths->setup();
 
 		$path = $paths->get_active( static::$relative_path );
-		$this->assertEquals( '/gh/wordpress/wordpress@' . Versions::get_wp_version_on_github( $GLOBALS['wp_version'] ) . '/wp-includes/js/comment-reply.min.js', $path );
+		$this->assertEquals( '/gh/wordpress/wordpress@' . Versions::get_stable_wp_version( $GLOBALS['wp_version'] ) . '/wp-includes/js/comment-reply.min.js', $path );
 	}
 }

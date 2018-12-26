@@ -329,7 +329,7 @@ class Process {
 
 		// Process core file using GitHub.
 		try {
-			return $this->github( 'wordpress/wordpress', Versions::get_wp_version_on_github( $version ), $file );
+			return $this->github( 'wordpress/wordpress', Versions::get_stable_wp_version( $version ), $file );
 		} catch ( Exception $e ) {
 			// If core was recently upgraded, it is assumed that it uses latest branch version.
 			if ( Expiration::is_recently_upgraded_core() ) {
@@ -339,7 +339,7 @@ class Process {
 						// Try with previous minor version.
 						$previous_version = Versions::get_previous_wp_version_in_branch( get_bloginfo( 'version' ) );
 
-						return $this->github( 'wordpress/wordpress', Versions::get_wp_version_on_github( $previous_version ), $file );
+						return $this->github( 'wordpress/wordpress', Versions::get_stable_wp_version( $previous_version ), $file );
 					} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement
 						// Proceed with latest stable version.
 					}
@@ -350,7 +350,7 @@ class Process {
 		// Finally, try with latest stable version.
 		if ( $version != $latest_core_version ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 			try {
-				return $this->github( 'wordpress/wordpress', Versions::get_wp_version_on_github( $latest_core_version ), $file );
+				return $this->github( 'wordpress/wordpress', Versions::get_stable_wp_version( $latest_core_version ), $file );
 			} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement
 				// There isn't any identical remote file.
 			}
