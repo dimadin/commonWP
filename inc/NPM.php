@@ -70,6 +70,36 @@ class NPM {
 				'file'     => 'backbone',
 				'minified' => '-min',
 			],
+			'react'                    => [
+				'package'  => 'react',
+				'file'     => 'umd/react.production.min',
+				'minified' => '',
+			],
+			'react-dom'                => [
+				'package'  => 'react-dom',
+				'file'     => 'umd/react-dom.production.min',
+				'minified' => '',
+			],
+			'moment'                   => [
+				'package'  => 'moment',
+				'file'     => 'min/moment.min',
+				'minified' => '',
+			],
+			'lodash'                   => [
+				'package'  => 'lodash',
+				'file'     => 'lodash',
+				'minified' => '.min',
+			],
+			'wp-polyfill'              => [
+				'package'  => '@babel/polyfill',
+				'file'     => 'dist/polyfill',
+				'minified' => '.min',
+			],
+			'wp-polyfill-formdata'     => [
+				'package'  => 'formdata-polyfill',
+				'file'     => 'formdata.min',
+				'minified' => '',
+			],
 			'plupload'                 => [
 				'package'  => 'plupload',
 				'file'     => 'js/plupload.full.min',
