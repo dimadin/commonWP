@@ -94,6 +94,9 @@ class Main {
 		// Remove expired temporaries from database.
 		add_action( 'admin_init', [ 'WP_Temporary',                                  'clean'                       ], 2        );
 
+		// Disable Jetpack Site Accelerator for static files (aka Photon CDN and Asset CDN).
+		add_filter( 'jetpack_force_disable_site_accelerator',                        '__return_true',                 2        );
+
 		// phpcs:enable
 	}
 
