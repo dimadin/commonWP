@@ -154,7 +154,11 @@ class Clean {
 				static::core_paths();
 				break;
 			case 'plugin':
-				static::plugin_paths( $hook_extra['plugins'] );
+				if ( isset( $hook_extra['plugins'] ) ) {
+					static::plugin_paths( $hook_extra['plugins'] );
+				} elseif ( isset( $hook_extra['plugin'] ) ) {
+					static::plugin_paths( array( $hook_extra['plugin'] ) );
+				}
 				break;
 			case 'theme':
 				static::theme_paths( $hook_extra['themes'] );
