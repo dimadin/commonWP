@@ -156,8 +156,8 @@ class WPCLI extends WP_CLI_Command {
 
 		$types = [ 'active', 'inactive', 'queue' ];
 
-		if ( isset( $assoc_args['type'] ) ) {
-			$types = array_intersect( explode( ',', $assoc_args['type'] ), $types );
+		if ( isset( $args[1] ) ) {
+			$types = array_intersect( explode( ',', $args[1] ), $types );
 		}
 
 		// Loop through types of paths.
